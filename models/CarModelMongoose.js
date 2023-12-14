@@ -19,24 +19,35 @@ export const addCarJoiSchema = Joi.object({
   mileage: Joi.number().required(),
 });
 
-const carSchema = new Schema({
-  year: Number,
-  make: String,
-  model: String,
-  type: String,
-  img: String,
-  description: String,
-  fuelConsumption: String,
-  engineSize: String,
-  accessories: Array,
-  functionalities: Array,
-  rentalPrice: String,
-  rentalCompany: String,
-  address: String,
-  rentalConditions: String,
-  mileage: Number,
+const carSchema = new Schema(
+  {
+    year: { type: Number, required: true },
+    make: { type: String, required: true },
+    model: { type: String, required: true },
+    type: { type: String, required: true },
+    img: { type: String, required: true },
+    description: { type: String, required: true },
+    fuelConsumption: { type: String, required: true },
+    engineSize: { type: String, required: true },
+    accessories: { type: Array, required: true },
+    functionalities: { type: Array, required: true },
+    rentalPrice: { type: String, required: true },
+    rentalCompany: { type: String, required: true },
+    address: { type: String, required: true },
+    rentalConditions: { type: String, required: true },
+    mileage: { type: Number, required: true },
+    favorite: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  { versionKey: false, timestamps: true }
+);
+// post save hook
+carSchema.post('save', (error, data, next) => {
+  error.status = 400;
+  next();
 });
-
 const CarModel = model('car', carSchema);
 // car - назва кластеру в однині!
 

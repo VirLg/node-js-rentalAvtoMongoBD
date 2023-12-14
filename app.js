@@ -14,4 +14,10 @@ app.use(express.json());
 
 app.use('/api/cars', carsRouter);
 app.use('/api/users', authRouter);
+
+app.use((err, req, res, next) => {
+  const { status = 500, message = 'Error Server' } = err;
+  res.status(status).json({ message });
+});
+
 export default app;
