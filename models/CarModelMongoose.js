@@ -16,12 +16,13 @@ export const addCarJoiSchema = Joi.object({
   rentalCompany: Joi.string().required(),
   address: Joi.string().required(),
   rentalConditions: Joi.string().required(),
+  minimumAge: Joi.string().required(),
   mileage: Joi.number().required(),
 });
 
 const carSchema = new Schema(
   {
-    year: { type: Number, required: true },
+    year: { type: String, required: true },
     make: { type: String, required: true },
     model: { type: String, required: true },
     type: { type: String, required: true },
@@ -29,13 +30,14 @@ const carSchema = new Schema(
     description: { type: String, required: true },
     fuelConsumption: { type: String, required: true },
     engineSize: { type: String, required: true },
-    accessories: { type: Array, required: true },
-    functionalities: { type: Array, required: true },
+    accessories: { type: String, required: true },
+    functionalities: { type: String, required: true },
     rentalPrice: { type: String, required: true },
     rentalCompany: { type: String, required: true },
     address: { type: String, required: true },
     rentalConditions: { type: String, required: true },
-    mileage: { type: Number, required: true },
+    minimumAge: { type: String, required: true },
+    mileage: { type: String, required: true },
     favorite: {
       type: Boolean,
       default: false,
