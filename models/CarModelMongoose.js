@@ -18,6 +18,7 @@ export const addCarJoiSchema = Joi.object({
   rentalConditions: Joi.string().required(),
   minimumAge: Joi.string().required(),
   mileage: Joi.number().required(),
+  
 });
 
 const carSchema = new Schema(
